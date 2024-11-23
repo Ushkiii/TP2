@@ -29,8 +29,14 @@ class Worker
 
         void SetNameWorker(string InNameWorker );
         void SetJobTitle(string inJobTitile);
-        void SetJobYear(int inJobTitle);
+        void SetJobYear(int inJobYear);
 
+        friend ostream& operator << (ostream& os, const Worker&);
+
+	    friend istream& operator >> (istream& in, Worker&);
+
+        bool operator<(Worker&) const;
+        bool operator>(Worker&) const;
 
 
 };
