@@ -20,7 +20,7 @@ class Worker
 
         void Print() const;
         void Save(ostream&) const;
-        void Load(istream&);
+        bool Load(istream&);
         bool Menu();
 
         string GetNameWorker();
@@ -33,7 +33,7 @@ class Worker
 
         friend ostream& operator << (ostream& os, const Worker&);
 
-	    friend istream& operator >> (istream& in, Worker&);
+      friend istream& operator >> (istream& in, Worker&);
 
         bool operator<(Worker&) const;
         bool operator>(Worker&) const;

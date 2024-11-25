@@ -42,6 +42,8 @@ void Worker::SetJobYear(int inJobYear)
     JobYear=inJobYear;
 }
 
+int Worker::GetJobYear(){return JobYear;}
+
 
 void Worker:: Print()const {
     cout<<"Name:"<<NameWorker<<endl;
@@ -57,7 +59,7 @@ void Worker:: Save(ostream& os) const{
     cout<<"The Worker is saved succeesfully"<<endl;
 }
 
-void Worker:: Load(istream& is)
+bool Worker:: Load(istream& is)
 {
     while (!is.eof())
     {
@@ -73,9 +75,31 @@ void Worker:: Load(istream& is)
         else if (key=="Year:")
             {JobYear=stoi(value);}
         cout<<"The Worker is succesfully loaded";
+        return true;
     }
     
 }
 
+bool Worker::operator<(Worker& worker) const
+{
+    return NameWorker<worker.NameWorker;
+}
 
+bool Worker::operator>(Worker& worker) const
+{
+    return NameWorker>worker.NameWorker;
+}
 
+ostream& operator<<(ostream& os, const Worker& worker)
+{
+    os<<worker.NameWorker<<" "<<worker.JobTitle<<" "<<worker.JobYear<<endl;
+}
+istream& operator>>(istream& in, Worker& worker)
+{
+    cout<<"Enter worker name: ";
+    in>>worker.NameWorker;
+    cout<<"Enter job title: ";
+    in>>worker.JobTitle;
+    cout<<"Enter job year: ";
+    in>>worker.JobYear;
+}
